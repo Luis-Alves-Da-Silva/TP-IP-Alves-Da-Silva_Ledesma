@@ -140,3 +140,8 @@ table.table td i {
     margin-top: 6px;
     font-size: 95%;
 }
+
+.loading-gif {
+    width: 5px; 
+    height: 5px; 
+}

@@ -1,100 +1,86 @@
-{% extends 'header.html' %} 
+{% extends 'header.html' %}
 {% block content %}
 {% load static %}
 
-<main>
-    <h1 class="text-center">Galería de Imágenes de la NASA</h1>
-    <div class="d-flex justify-content-center" style="margin-bottom: 1%">
+<main class="container mx-auto mt-8">
+    <h1 class="text-center text-3xl font-bold mb-6">Galería de Imágenes de la NASA</h1>
+    <div class="flex justify-center mb-4">
         <!-- Buscador del sitio -->
-        <form id="search-form" class="d-flex" action="{% url 'buscar' %}" method="POST">
+        <form id="search-form" class="flex space-x-2" action="{% url 'buscar' %}" method="POST">
             {% csrf_token %}
-            <input class="form-control me-2" type="search" name="query" placeholder="Escribí una palabra" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <input class="form-control p-2 rounded border border-gray-300" type="search" name="query" placeholder="Escribí una palabra" aria-label="Search">
+            <button class="btn btn-outline-success bg-green-500 text-white p-2 rounded" type="submit">Buscar</button>
         </form>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {% for imagen in images %}
-        <div class="col">
-            <div class="card">
-                <!-- INICIO: Modificación para el spinner e imagen -->
-                <div class="image-container" style="position: relative;">
-                    <img src="{% static 'images/loading.gif' %}" class="loading-gif" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: block;" alt="Loading...">
-                    <img src="{{ imagen.image_url }}" class="card-img-top nasa-image" alt="imagen" style="display: none;">
-                </div>
-                <!-- FIN: Modificación para el spinner e imagen -->
-                <div class="card-body">
-                    
-                    <h5 class="card-title">{{ imagen.title}}</h5>
-                    <p class="card-text">{{ imagen.description}}</p>
-                </div>
-                {% if request.user.is_authenticated %}
-                <div class="card-footer text-center">
-                    <form method="post" action="{% url 'agregar-favorito' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="title" value="{{ imagen.title }}">
-                        <input type="hidden" name="description" value="{{ imagen.description }}">
-                        <input type="hidden" name="image_url" value="{{ imagen.image_url }}">
-                        <input type="hidden" name="date" value="{{ imagen.date }}"> {% if imagen in favourite_list %}
-                        <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white" disabled>✔️ Ya está añadida a favoritos</button> {% else %}
-                        <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white">❤️ Añadir a favoritos</button> {% endif %}
-
-                    </form>
-                </div>
-                {% endif %}
+        <div class="bg-white shadow-md rounded-lg overflow-hidden relative">
+            <div class="w-full h-64 bg-white flex items-center justify-center relative">
+                <img src="{% static 'images/loading.gif' %}" class="loading-gif" alt="Loading...">
             </div>
+            <img src="{{ imagen.image_url }}" class="w-full h-64 object-cover nasa-image hidden" alt="imagen">
+            <div class="p-4">
+                <h5 class="text-xl font-bold mb-2">{{ imagen.title }}</h5>
+                <p class="text-gray-700">{{ imagen.description }}</p>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="p-4 text-center">
+                <form method="post" action="{% url 'agregar-favorito' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="title" value="{{ imagen.title }}">
+                    <input type="hidden" name="description" value="{{ imagen.description }}">
+                    <input type="hidden" name="image_url" value="{{ imagen.image_url }}">
+                    <input type="hidden" name="date" value="{{ imagen.date }}">
+                    {% if imagen in favourite_list %}
+                    <button type="submit" class="bg-gray-400 text-white py-2 px-4 rounded" disabled>✔️ Ya está añadida a favoritos</button>
+                    {% else %}
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">❤️ Añadir a favoritos</button>
+                    {% endif %}
+                </form>
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
 </main>
-<!-- INICIO: Modificación del script para manejar los eventos de carga de imágenes -->
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const images = document.querySelectorAll('.nasa-image');
+
         images.forEach((img) => {
             img.addEventListener('load', function() {
-                const loadingGif = img.previousElementSibling;
-                loadingGif.style.display = 'none';
-                img.style.display = 'block';
+                const parent = img.parentElement;
+                const loadingDiv = parent.querySelector('.w-full.h-64.bg-white');
+                loadingDiv.style.display = 'none';
+                img.classList.remove('hidden');
             });
 
             img.addEventListener('error', function() {
-                const loadingGif = img.previousElementSibling;
-                loadingGif.style.display = 'none';
-                img.style.display = 'block';
-                img.src = '{% static 'images/placeholder.png' %}'; // Imagen de respaldo en caso de error
+                const parent = img.parentElement;
+                const loadingDiv = parent.querySelector('.w-full.h-64.bg-white');
+                loadingDiv.style.display = 'none';
+                img.src = "{% static 'images/placeholder.png' %}";
+                img.classList.remove('hidden');
             });
+
+            img.src = img.src;
         });
 
         const searchForm = document.getElementById('search-form');
         searchForm.addEventListener('submit', function() {
-            const loadingGifs = document.querySelectorAll('.loading-gif');
-            loadingGifs.forEach(function(gif) {
-                gif.style.display = 'block';
+            const loadingDivs = document.querySelectorAll('.w-full.h-64.bg-white');
+            loadingDivs.forEach(function(div) {
+                div.style.display = 'flex';
             });
 
             const nasaImages = document.querySelectorAll('.nasa-image');
             nasaImages.forEach(function(img) {
-                img.style.display = 'none';
+                img.classList.add('hidden');
             });
-        });
-
-        // Mostrar el spinner de carga inicialmente
-        const initialLoadingGifs = document.querySelectorAll('.loading-gif');
-        initialLoadingGifs.forEach(function(gif) {
-            gif.style.display = 'block';
         });
     });
 </script>
-<!-- FIN: Modificación del script para manejar los eventos de carga de imágenes -->
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
