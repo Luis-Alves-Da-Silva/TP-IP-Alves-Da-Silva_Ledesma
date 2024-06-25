@@ -1,0 +1,4 @@
+#ignorar los archivos que se generan al probar el funcionamiento de la pagina (los archivos cache)
+*.pyc
+*.pyo
+__pycache__/
