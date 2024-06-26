@@ -6,9 +6,15 @@ from .layers.services import services_nasa_image_gallery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+
+@login_required() #agregamos la funcionalidad de que solo los logueados pueden entrar a la pagina
 # función que invoca al template del índice de la aplicación.
 def index_page(request):
     return render(request, 'index.html')
+
+def salir(request):#la funcion cierra sesion y redirige al usuario a la pagina principal
+    logout(request)
+    return redirect ('/')
 
 # auxiliar: retorna 2 listados -> uno de las imágenes de la API y otro de los favoritos del usuario.
 def getAllImagesAndFavouriteList(request):
