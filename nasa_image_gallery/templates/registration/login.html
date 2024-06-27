@@ -1,18 +1,22 @@
 {% extends 'header.html' %} {% block content %}
-<div class="login-form" style="text-align: center;">
+<div class="flex justify-center items-center min-h-screen bg-gray-100" style="text-align: center;">
     <!-- Agrego la url de login en el formulario de inicio de sesion -->
-    <form action="{% url 'login' %}" method="POST" style="display: inline-block;">
-        {% csrf_token %}
-        <h2 class="text-center">Inicio de sesión</h2>
-        <div class="form-group" style="margin-bottom: 5%;">
-            <input type="text" name="username" id="username" class="form-control" placeholder="Usuario" required="required">
-        </div>
-        <div class="form-group" style="margin-bottom: 5%;">
-            <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" required="required">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
-        </div>
-    </form>
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <form action="{% url 'login' %}" method="POST" style="display: inline-block;">
+            {% csrf_token %}
+            <h2 class="text-center text-2xl font-bold mb-6 px-4">Inicio de sesión</h2>
+            <div class="mb-4" style="margin-bottom: 5%;">
+                <input type="text" name="username" id="username" class="form-control border-2 rounded p-2" placeholder="Usuario" required="required">
+            </div>
+            <div class="mb-6" style="margin-bottom: 5%;">
+                <input type="password" name="password" id="password" class="form-control border-2 rounded border-gray-300 p-2" placeholder="Contraseña" required="required">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="py-2 px-4 bg-green-500 text-white font-bold rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Ingresar</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
+
+{% include "footer.html" %}
