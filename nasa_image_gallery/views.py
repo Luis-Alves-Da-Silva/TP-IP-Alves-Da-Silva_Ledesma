@@ -56,7 +56,7 @@ def saveFavourite(request):
 @login_required
 def deleteFavourite(request):
     services_nasa_image_gallery.deleteFavourite(request)
-    return redirect ('home')
+    return redirect ('favoritos')
 
 
 @login_required
