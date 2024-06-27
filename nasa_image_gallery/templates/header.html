@@ -4,42 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi primera aplicación con Django</title>
-    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} {% load static %}
+    <title>TP - Introducción a la Programación</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Proyecto TP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'index-page' %}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><strong>Galería</strong></a>
-                    </li>
-                    {% if request.user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'favoritos' %}">Favoritos</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        {% if request.user.is_authenticated %}
-                        <a class="nav-link" href="#">Salir</a> {% else %}
-                        <a class="nav-link" href="#">Iniciar sesión</a> {% endif %}
-                    </li>
-                </ul>
+    <nav class="bg-indigo-900 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a class="text-white text-xl font-bold hover:text-indigo-200" href="{% url 'index-page' %}">Proyecto TP</a>
+            <button class="text-white md:hidden" onclick="toggleMenu()">
+                <svg class="navbar-toggler hover:bg-indigo-200 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <div id="menu" class="hidden md:flex space-x-4">
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-indigo-200 md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-indigo-200" href="{% url 'index-page' %}">Inicio</a>
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-indigo-200 md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-indigo-200"  href="{% url 'home' %}">Galería</a>
+                {% if request.user.is_authenticated %}
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-indigo-200 md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-indigo-200"  href="{% url 'favoritos' %}">Favoritos</a>
+                <!-- Agregamos la ruta para que el boton salir te saque de la sesion -->
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-red-700 hover:underline md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-red-700 md:hover:underline"  href="{% url 'exit' %}">Salir</a>
 
+                {% else %}
+                <!-- Agregamos la ruta hacia la pagina de logueo en el boton iniciar sesion -->
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-indigo-200 md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-indigo-200"  href="{% url 'login' %}">Iniciar sesión</a>
 
+                {% endif %}
             </div>
         </div>
     </nav>
 
-    {% block content %} {% endblock %} {% include "footer.html" %}
+    {% block content %} {% endblock %}
+
+    {% include "footer.html" %}
+</body>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('hidden');
+    }
+</script>
+
+</html>

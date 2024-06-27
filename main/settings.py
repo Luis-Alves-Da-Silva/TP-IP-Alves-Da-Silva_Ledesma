@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nasa_image_gallery',
     'bootstrap5',
+    
+
 ]
 
 MIDDLEWARE = [

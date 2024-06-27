@@ -1,9 +1,16 @@
-{% extends 'header.html' %} {% block content %} {% if request.user.is_authenticated %}
-<h2 class="text-center">Bienvenido {{ user.username | upper }}!</h2>
-{% else %}
-<h2 class="text-center">Bienvenido!</h2>
-{% endif %}
-<p class="text-center">
-    Mirá las imágenes desde <a href="{% url 'home' %}">este link.</a>
-</p>
+{% extends 'header.html' %}
+
+{% block content %}
+<main class="container mx-auto mt-8 flex justify-center mb-4">
+    <div class="bg-white shadow-md rounded-lg p-52">
+        {% if request.user.is_authenticated %}
+        <h2 class="text-center text-pink-600 font-bold text-4xl mb-4">¡Bienvenido {{ user.username | upper }}!</h2>
+        {% else %}
+        <h2 class="text-center text-pink-600 font-bold text-4xl mb-4">¡Bienvenido!</h2>
+        {% endif %}
+        <p class="text-center text-xl">
+            Mirá las imágenes desde <a href="{% url 'home' %}" class="text-gray-500 hover:text-indigo-800 underline">este link</a>.
+        </p>
+    </div>
+</main>
 {% endblock %}

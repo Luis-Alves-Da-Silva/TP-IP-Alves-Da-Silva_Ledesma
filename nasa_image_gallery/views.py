@@ -6,6 +6,7 @@ from .layers.services import services_nasa_image_gallery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
+
 # función que invoca al template del índice de la aplicación.
 def index_page(request):
     return render(request, 'index.html')
@@ -13,7 +14,7 @@ def index_page(request):
 # auxiliar: retorna 2 listados -> uno de las imágenes de la API y otro de los favoritos del usuario.
 def getAllImagesAndFavouriteList(request):
     images = services_nasa_image_gallery.getAllImages()# retorna todas las imagenes
-    favourite_list = [] #retorna la lista de favoritos, en el caso de no desarrollar ese punto lo dejaremos como lista vacia
+    favourite_list = services_nasa_image_gallery.getAllFavouritesByUser(request) #retorna la lista de favoritos
     return images, favourite_list
 
 # función principal de la galería.
@@ -42,20 +43,23 @@ def search(request):
 # las siguientes funciones se utilizan para implementar la sección de favoritos: traer los favoritos de un usuario, guardarlos, eliminarlos y desloguearse de la app.
 @login_required
 def getAllFavouritesByUser(request):
-    favourite_list = []
+    favourite_list = services_nasa_image_gallery.getAllFavouritesByUser(request)
     return render(request, 'favourites.html', {'favourite_list': favourite_list})
 
 
 @login_required
 def saveFavourite(request):
-    pass
+    services_nasa_image_gallery.saveFavourite(request)
+    return redirect ('home')
 
 
 @login_required
 def deleteFavourite(request):
-    pass
+    services_nasa_image_gallery.deleteFavourite(request)
+    return redirect ('home')
 
 
 @login_required
-def exit(request):
-    pass
+def exit(request): #la funcion cierra sesion y redirige al usuario a la pagina principal
+    logout(request)
+    return redirect ('/')
