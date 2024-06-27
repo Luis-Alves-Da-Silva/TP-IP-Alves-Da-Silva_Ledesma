@@ -1,7 +1,7 @@
 # Introducción a la Programación - primer semestre del 2024.
 ## Trabajo práctico: galería de imágenes de la NASA 🚀
-### Alves Da Silva, Luis
-### Ledesma, Antonela
+- **Alves Da Silva, Luis**
+- **Ledesma, Antonela**
 
 ### Introducción
   - Este archivo tiene como objetivo mostrar el desarrollo del proyecto *fullstack* de la pagina web que nos permite  visualizar y gestionar imágenes de la NASA. El objetivo principal de la página será mostrar una amplia galería de imágenes, con las cuales el usuario podrá interactuar al guardarlas como favoritas. 
@@ -15,7 +15,7 @@
 
   - Esta vista de la aplicación está contenida en la ruta 'home' de nuestra página, anexada a el apartado de 'Galería' de nuestro header. 
 
-  - El código es el siguiente: 
+  El código es el siguiente: 
   ```
     def home(request):
       lista_imagenes, lista_favoritos = getAllImagesAndFavouriteList(request)
@@ -46,6 +46,8 @@
 
   Hasta este momento, en el desarrollo del proyecto, solo se visualizaban las imagenes con su título y descripción, por defecto buscando el término 'space'. 
 
+  ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/eb5a46a2-99bb-4b4e-bdcc-fd9b6b45914b)
+
 #### **2. Búsqueda de Imágenes**
 
   - La implementación de esta funcionalidad requería agregar una función al archivo `views`, utilizando también `getAllImagesAndFavouriteList` y sus respectivas funciones mostradas arriba: 
@@ -62,7 +64,10 @@
 ```
   Además, utiliza una función definida previamente, `getImagesBySearchInputLike`, que a su vez utiliza una la función `getAllImages` mostrada en el punto anterior. 
 
-  A partir de este punto, ya era posible visualizar distintas imágenes según el input ingresado al buscador, y en caso de no poseer ninguno la busqueda sigue siendo por defecto 'space'. 
+  A partir de este punto, ya era posible visualizar distintas imágenes según el input ingresado al buscador, y en caso de no poseer ninguno la búsqueda sigue siendo por defecto 'space'.
+  
+![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/ec7f1928-ae86-4933-90de-7bb98ebca9f8)
+![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/657b39b3-afcb-4a56-9a30-38a0c5046bae)
 
 #### **3. Spinner de Carga**
 
@@ -162,6 +167,8 @@
 
   Una vez modificado, el spinner de carga aparece en cada cuadro donde estará la imagen que se va a mostrar.
 
+  ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/a9cf1eb8-aae9-4816-9e7f-dfa54d25aebf)
+
 #### **4. Inicio de Sesión**
 
   - Para implementar esa funcionalidad, se modificaron varios archivos, en primer lugar se modificaron las urls de la carpeta `main`: 
@@ -193,6 +200,12 @@
 
   Hasta este punto de desarrollo, la página web ya tenía disponible el login de usuario, lo cuál modificaba las vistas, ya que en nuetra vista de inicio aparecía el nombre del usuario, y en la galería de imagenes nos aparecía el botón para añadir a favoritos, aunque aún sin funcionalidad. 
 
+  ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/3434a24a-8cc2-4950-91c5-4b82b985181c)
+
+  ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/268dd5f7-4770-4834-8ae6-05e03257e58d)
+
+  ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/c0cb240c-a9d3-4317-8558-e641c92889d3)
+
 #### **5. Favoritos** 
 
   - Para llevar a cabo esta funcionalidad se desarrollaron funciones que estaban nombradas en el archivo ``views.py`: 
@@ -222,6 +235,7 @@
       return redirect ('home')
   ```
 
+  
   Por último, en esta implementación, se agregó el listado de favoritos con la siguiente función en el archivo `views.py`: 
 
   ```
@@ -255,6 +269,10 @@
         return mapped_favourites
   ```
   Hasta acá, el cliente de la web tiene la posibilidad de ingresar con el usuario 'ADMIN', ver la galería de imágenes y realizar la búsqueda que desee, además de tener la posibilidad de agregar como favoritos a aquellos que desee, y poder verlos en una lista con más detalles como la fecha de dicha imagen, para también desde ahí poder eliminarlos de esa lista. 
+
+![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/1483714e-cb69-4025-8227-adec3eed6c76)
+
+![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/cb5985c3-f5f4-47cf-96fc-c68760e45991)
 
 #### **6. Renovar interfaz gráfica**
 
@@ -298,3 +316,5 @@
       {% include "footer.html" %}
     </body>
   ```
+
+![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/464c6080-3b03-4d3a-9070-caa1a984ea14)
