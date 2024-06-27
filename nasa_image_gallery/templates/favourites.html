@@ -12,12 +12,12 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imagen</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Título</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                        <th class="p-2 text-left text-xs font-medium text-gray-500 uppercase">#</th>
+                        <th class="p-2 text-left text-xs font-medium text-gray-500 uppercase">Imagen</th>
+                        <th class="p-2 text-left text-xs font-medium text-gray-500 uppercase">Título</th>
+                        <th class="p-2 text-left text-xs font-medium text-gray-500 uppercase">Descripción</th>
+                        <th class="p-2 text-left text-xs font-medium text-gray-500 uppercase">Fecha</th>
+                        <th class="p-2 text-left text-xs font-medium text-gray-500 uppercase">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -27,14 +27,14 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <img src="{{ favorito.image_url }}" alt="" class="max-w-full h-auto" style="max-width: 200px; max-height: 200px;">
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ favorito.title }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ favorito.description }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ favorito.date }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="p-2">{{ favorito.title }}</td>
+                        <td class="p-2">{{ favorito.description }}</td>
+                        <td class="p-2">{{ favorito.date }}</td>
+                        <td class="p-2">
                             <form method="post" action="{% url 'borrar-favorito' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{ favorito.id }}">
-                                <button type="submit" class="text-red-500 hover:text-red-700"><i class="material-icons">&#xE872;</i></button>
+                                <button type="submit" class="text-red-500 hover:text-red-700">❌</button>
                             </form>
                         </td>
                     </tr>
