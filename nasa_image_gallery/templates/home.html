@@ -3,13 +3,13 @@
 {% load static %}
 
 <main class="container mx-auto mt-8">
-    <h1 class="text-center text-3xl font-bold mb-6">Galería de Imágenes de la NASA</h1>
+    <h1 class="text-center text-3xl font-bold mb-6 text-pink-600">Galería de Imágenes de la NASA</h1>
     <div class="flex justify-center mb-4">
         <!-- Buscador del sitio -->
         <form id="search-form" class="flex space-x-2" action="{% url 'buscar' %}" method="POST">
             {% csrf_token %}
             <input class="form-control p-2 rounded border border-gray-300" type="search" name="query" placeholder="Escribí una palabra" aria-label="Search">
-            <button class="btn btn-outline-success bg-green-500 text-white p-2 rounded" type="submit">Buscar</button>
+            <button class="py-2 px-4 bg-green-400 text-white font-bold rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" type="submit">Buscar</button>
         </form>
     </div>
 
@@ -35,7 +35,7 @@
                     {% if imagen in favourite_list %}
                     <button type="submit" class="bg-gray-400 text-white py-2 px-4 rounded" disabled>✔️ Ya está añadida a favoritos</button>
                     {% else %}
-                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">❤️ Añadir a favoritos</button>
+                    <button type="submit" class="py-2 px-4 bg-green-400 text-white font-bold rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">❤️ Añadir a favoritos</button>
                     {% endif %}
                 </form>
             </div>
