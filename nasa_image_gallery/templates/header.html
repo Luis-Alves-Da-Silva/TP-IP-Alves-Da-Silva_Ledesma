@@ -25,7 +25,7 @@
                 {% if request.user.is_authenticated %}
                 <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-indigo-200 md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-indigo-200"  href="{% url 'favoritos' %}">Favoritos</a>
                 <!-- Agregamos la ruta para que el boton salir te saque de la sesion -->
-                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-red-700 hover:underline md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-red-700 md:hover:underline"  href="{% url 'salir' %}">Salir</a>
+                <a class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-red-700 hover:underline md:inline md:mt-0 md:text-base md:bg-transparent md:rounded md:hover:text-red-700 md:hover:underline"  href="{% url 'exit' %}">Salir</a>
 
                 {% else %}
                 <!-- Agregamos la ruta hacia la pagina de logueo en el boton iniciar sesion -->
