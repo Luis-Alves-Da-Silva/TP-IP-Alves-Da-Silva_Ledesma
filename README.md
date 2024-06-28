@@ -7,7 +7,8 @@
   - Este archivo tiene como objetivo mostrar el desarrollo del proyecto *fullstack* de la pagina web que nos permite  visualizar y gestionar imágenes de la NASA. El objetivo principal de la página será mostrar una amplia galería de imágenes, con las cuales el usuario podrá interactuar al guardarlas como favoritas. 
   El proyecto se centra en la implementación de varias funcionalidades, incluyendo la carga básica de imágenes desde la API de la NASA, la capacidad de buscar imágenes específicas por medio de un motor de búsqueda integrado, y la implementación de un mecanismo de autenticación -login- que permite a los usuarios guardar y gestionar sus imágenes favoritas de manera personalizada.
   Además, se ha integrado un spinner para mejorar la experiencia del usuario durante la carga de contenido, así como se han aplicado modificaciones visuales utilizando Tailwind CSS para optimizar el diseño de las vistas.
-  A lo largo del informe, se detallará el código implementado en cada una de estas funcionalidades. 
+Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos seleccionados de la consigna se siguieron algunos lineamientos básicos del enfoque Scrum para la gestión de proyectos. Hemos planificado nuestras tareas con el fin de que cada integrante del equipo este centrado en alguna de las funcionalidades a desarrollar. Para ello, tomamos la iniciativa de crear una rama en github por cada uno de los nuevos desarrollos, realizamos meetings para sincronizar el trabajo, discutir problemas encontrados y detectar oportunidades de mejora. 
+  A lo largo del informe, se detallará el código implementado en cada una de las funcionalidades. 
 
 ### Funcionalidades Implementadas
 
@@ -44,7 +45,7 @@
   ```
   La misma utiliza funciones ya definidas, desde el archivo `transport` y `mapper`. 
 
-  Hasta este momento, en el desarrollo del proyecto, solo se visualizaban las imagenes con su título y descripción, por defecto buscando el término 'space'. 
+  Hasta este momento, en el desarrollo del proyecto, solo se visualizaban las imagenes con su título y descripción, por defecto buscando el término 'space'. En primera instancia encontramos la dificultad de hacer que la galeria de imagenes se cargue correctamente hasta que nos dimos cuenta de que la clave para lograrlo estaba en utilizar las funciones que ya habian sido desarrolladas en otros documentos del proyecto.
 
   ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/eb5a46a2-99bb-4b4e-bdcc-fd9b6b45914b)
 
@@ -170,8 +171,8 @@
   ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/a9cf1eb8-aae9-4816-9e7f-dfa54d25aebf)
 
 #### **4. Inicio de Sesión**
-
-  - Para implementar esa funcionalidad, se modificaron varios archivos, en primer lugar se modificaron las urls de la carpeta `main`: 
+  Para implementar esta funcionalidad hemos tenido varias dificultades ya que  durante el desarrollo y testeo de la misma aparecian distintos tipos de errores que a prueba y error logramos solucionar. Para lograr el inicio de sesion y cierre de sesion hemos tenido que moodificar varios archivos: 
+  En primer lugar se modificaron las urls de la carpeta `main`: 
 
   ```
     urlpatterns = [
@@ -318,3 +319,7 @@
   ```
 
 ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/464c6080-3b03-4d3a-9070-caa1a984ea14)
+
+### Conclusion 
+  El desarrollo del proyecto "Galeria de Imagenes de la NASA" ha sido una experiencia enriquecedora donde hemos podido plasmar algunos de los conocimientos principales adquiridos durante la cursada de introducción a la programación ademas de familiarizarnos con el uso de Git, Github, Django,JavaScript y algunos conceptos de las metodologías agiles para la de gestión de proyectos. A pesar de algunas dificultadas encontradas a lo largo del proyecto, hemos logrado que las imagenes se carguen correctamente en la galeria, el funcionamiento del buscador, la implementación del loading spinner para mejorar la experiencia del usuario, el correcto funcionamiento del inicio y cierre de sesión, la incorporación de los favoritos y la renovación de la interfaz grafica con el fin de proporcionar al usuario una mejor experiencia, atractiva y moderna.
+  
