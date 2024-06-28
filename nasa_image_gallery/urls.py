@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -13,4 +12,5 @@ urlpatterns = [
     path('favourites/delete/', views.deleteFavourite, name='borrar-favorito'),
 
     path('exit/', views.exit, name='exit'),
-]
+    
+] 
