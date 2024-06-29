@@ -1,20 +1,25 @@
 # Introducción a la Programación - primer semestre del 2024.
 ## Trabajo práctico: galería de imágenes de la NASA 🚀
-- **Alves Da Silva, Luis**
-- **Ledesma, Antonela**
+### Comisión 7 
+### Prof.: Sergio Santa Cruz, Nazareno Avalos, Nahuel Sauma
+
+#### Alumnos: 
+- **Alves Da Silva, Luis** | DNI: 32051576
+- **Ledesma, Antonela** | DNI: 38673753
 
 ### Introducción
-  - Este archivo tiene como objetivo mostrar el desarrollo del proyecto *fullstack* de la pagina web que nos permite  visualizar y gestionar imágenes de la NASA. El objetivo principal de la página será mostrar una amplia galería de imágenes, con las cuales el usuario podrá interactuar al guardarlas como favoritas. 
+
+  Este archivo tiene como objetivo mostrar el desarrollo del proyecto *fullstack* de la pagina web que nos permite  visualizar y gestionar imágenes de la NASA. El objetivo principal de la página será mostrar una amplia galería de imágenes, con las cuales el usuario podrá interactuar al guardarlas como favoritas.<br>
   El proyecto se centra en la implementación de varias funcionalidades, incluyendo la carga básica de imágenes desde la API de la NASA, la capacidad de buscar imágenes específicas por medio de un motor de búsqueda integrado, y la implementación de un mecanismo de autenticación -login- que permite a los usuarios guardar y gestionar sus imágenes favoritas de manera personalizada.
-  Además, se ha integrado un spinner para mejorar la experiencia del usuario durante la carga de contenido, así como se han aplicado modificaciones visuales utilizando Tailwind CSS para optimizar el diseño de las vistas.
-Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos seleccionados de la consigna se siguieron algunos lineamientos básicos del enfoque Scrum para la gestión de proyectos. Hemos planificado nuestras tareas con el fin de que cada integrante del equipo este centrado en alguna de las funcionalidades a desarrollar. Para ello, tomamos la iniciativa de crear una rama en github por cada uno de los nuevos desarrollos, realizamos meetings para sincronizar el trabajo, discutir problemas encontrados y detectar oportunidades de mejora. 
+  Además, se ha integrado un spinner para mejorar la experiencia del usuario durante la carga de contenido, así como se han aplicado modificaciones visuales utilizando Tailwind CSS para optimizar el diseño de las vistas.<br>
+  Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos seleccionados de la consigna se siguieron algunos lineamientos básicos del enfoque Scrum para la gestión de proyectos. Hemos planificado nuestras tareas con el fin de que cada integrante del equipo este centrado en alguna de las funcionalidades a desarrollar. Para ello, tomamos la iniciativa de crear una rama en github por cada uno de los nuevos desarrollos, realizamos meetings para sincronizar el trabajo, discutir problemas encontrados y detectar oportunidades de mejora.<br>
   A lo largo del informe, se detallará el código implementado en cada una de las funcionalidades. 
 
 ### Funcionalidades Implementadas
 
 #### **1. Carga de Imágenes** 
 
-  - Esta vista de la aplicación está contenida en la ruta 'home' de nuestra página, anexada a el apartado de 'Galería' de nuestro header. 
+  &nbsp;Esta vista de la aplicación está contenida en la ruta 'home' de nuestra página, anexada a el apartado de 'Galería' de nuestro header. 
 
   El código es el siguiente: 
   ```
@@ -28,9 +33,9 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
 
   ```
     def getAllImagesAndFavouriteList(request):
-    images = services_nasa_image_gallery.getAllImages()# retorna todas las imagenes
-    favourite_list = [] #retorna la lista de favoritos, en el caso de no desarrollar ese punto lo dejaremos como lista vacia
-    return images, favourite_list
+      images = services_nasa_image_gallery.getAllImages()# retorna todas las imagenes
+      favourite_list = [] #retorna la lista de favoritos, en el caso de no desarrollar ese punto lo dejaremos como lista vacia
+      return images, favourite_list
   ```
   La cuál utiliza la función del archivo `services_nasa_image_gallery`: 
 
@@ -45,13 +50,13 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
   ```
   La misma utiliza funciones ya definidas, desde el archivo `transport` y `mapper`. 
 
-  Hasta este momento, en el desarrollo del proyecto, solo se visualizaban las imagenes con su título y descripción, por defecto buscando el término 'space'. En primera instancia encontramos la dificultad de hacer que la galeria de imagenes se cargue correctamente hasta que nos dimos cuenta de que la clave para lograrlo estaba en utilizar las funciones que ya habian sido desarrolladas en otros documentos del proyecto.
+&nbsp;Hasta este momento, en el desarrollo del proyecto, solo se visualizaban las imagenes con su título y descripción, por defecto buscando el término 'space'.<br> &nbsp;En primera instancia encontramos la dificultad de hacer que la galería de imágenes se cargue correctamente hasta que nos dimos cuenta de que la clave para lograrlo estaba en utilizar las funciones que ya habían sido desarrolladas en otros documentos del proyecto.
 
   ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/eb5a46a2-99bb-4b4e-bdcc-fd9b6b45914b)
 
 #### **2. Búsqueda de Imágenes**
 
-  - La implementación de esta funcionalidad requería agregar una función al archivo `views`, utilizando también `getAllImagesAndFavouriteList` y sus respectivas funciones mostradas arriba: 
+&nbsp;La implementación de esta funcionalidad requería agregar una función al archivo `views`, utilizando también `getAllImagesAndFavouriteList` y sus respectivas funciones mostradas arriba: 
 
 ```
   def search(request):
@@ -63,16 +68,16 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
         filtered_image = services_nasa_image_gallery.getImagesBySearchInputLike(search_msg) 
     return render(request, 'home.html', {'images': filtered_image, 'favourite_list': favourite_list, 'search_query': search_msg })
 ```
-  Además, utiliza una función definida previamente, `getImagesBySearchInputLike`, que a su vez utiliza una la función `getAllImages` mostrada en el punto anterior. 
+&nbsp;Además, utiliza una función definida previamente, `getImagesBySearchInputLike`, que a su vez utiliza una la función `getAllImages` mostrada en el punto anterior. 
 
-  A partir de este punto, ya era posible visualizar distintas imágenes según el input ingresado al buscador, y en caso de no poseer ninguno la búsqueda sigue siendo por defecto 'space'.
+&nbsp;A partir de este punto, ya era posible visualizar distintas imágenes según el input ingresado al buscador, y en caso de no poseer ninguno la búsqueda sigue siendo por defecto 'space'.
   
 ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/ec7f1928-ae86-4933-90de-7bb98ebca9f8)
 ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/657b39b3-afcb-4a56-9a30-38a0c5046bae)
 
 #### **3. Spinner de Carga**
 
-  - El spinner de carga requirió un cambio en el template de `home.html`, agregando la etiqueta `<script>`, con código Js, para poder manejar la lógica de carga del navegador. En un principio se modificó para que se muestre en la vista que estaba predeterminada, y luego con el cambio de estilos sufrió unos cambios. Se adjunta el código como fueron modificados: 
+  &nbsp;El spinner de carga requirió un cambio en el template de `home.html`, agregando la etiqueta `<script>`, con código JS, para poder manejar la lógica de carga del navegador.<br> &nbsp;En un principio se modificó para que se muestre en la vista que estaba predeterminada, y luego con el cambio de estilos sufrió unos cambios. Se adjunta el código como fueron modificados: 
 
   ```
     <div class="image-container" style="position: relative;">
@@ -166,13 +171,14 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
     </script>
   ```
 
-  Una vez modificado, el spinner de carga aparece en cada cuadro donde estará la imagen que se va a mostrar.
+  &nbsp;Una vez modificado, el spinner de carga aparece en cada cuadro donde estará la imagen que se va a mostrar.
 
   ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/a9cf1eb8-aae9-4816-9e7f-dfa54d25aebf)
 
 #### **4. Inicio de Sesión**
-  Para implementar esta funcionalidad hemos tenido varias dificultades ya que  durante el desarrollo y testeo de la misma aparecian distintos tipos de errores que a prueba y error logramos solucionar. Para lograr el inicio de sesion y cierre de sesion hemos tenido que moodificar varios archivos: 
-  En primer lugar se modificaron las urls de la carpeta `main`: 
+
+  &nbsp;Para implementar esta funcionalidad hemos tenido varias dificultades ya que durante el desarrollo y testeo de la misma aparecían distintos tipos de errores que, a prueba y error, logramos solucionar. Para lograr el inicio de sesión y cierre de sesión hemos tenido que modificar varios archivos. <br>
+  &nbsp;En primer lugar se modificaron las urls de la carpeta `main`: 
 
   ```
     urlpatterns = [
@@ -182,15 +188,15 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
     ]
   ```
 
-  Agregando, `accounts` de django para la gestión de autenticación. Además, al template de `login.html` se le agrego al formulario la ruta correspondiente: 
+  &nbsp;Agregando, `accounts` de django para la gestión de autenticación. Además, al template de `login.html` se le agregó al formulario la ruta correspondiente: 
 
   ```action="{% url 'login' %}"```
 
-  Del mismo modo, se agregó en el archivo `header.html` la referencia correspondiente al 'Iniciar Sesión' del mismo: 
+  &nbsp;Del mismo modo, se agregó en el archivo `header.html` la referencia correspondiente al item 'Iniciar Sesión' del mismo: 
 
   ```href="{% url 'login' %}"```
 
-  Por último, se agregó la función que permite al usuario salir de la sesión: 
+  &nbsp;Por último, se agregó la función que permite al usuario salir de la sesión: 
 
   ```
     @login_required
@@ -199,7 +205,7 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
       return redirect ('/')
   ```
 
-  Hasta este punto de desarrollo, la página web ya tenía disponible el login de usuario, lo cuál modificaba las vistas, ya que en nuetra vista de inicio aparecía el nombre del usuario, y en la galería de imagenes nos aparecía el botón para añadir a favoritos, aunque aún sin funcionalidad. 
+  &nbsp;En este punto de desarrollo, la página web ya tenía disponible el login de usuario, lo cuál modificaba las vistas, ya que en nuetra vista de inicio aparecía el nombre del usuario, y en la galería de imagenes nos aparecía el botón para añadir a favoritos, aunque aún sin funcionalidad. 
 
   ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/3434a24a-8cc2-4950-91c5-4b82b985181c)
 
@@ -209,9 +215,9 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
 
 #### **5. Favoritos** 
 
-  - Para llevar a cabo esta funcionalidad se desarrollaron funciones que estaban nombradas en el archivo ``views.py`: 
+  Para llevar a cabo esta funcionalidad se desarrollaron funciones que estaban definidas en el archivo `views.py`: 
 
-  En un principio se modificó la función `getAllImagesAndFavouriteList`: 
+  Se modificó la función `getAllImagesAndFavouriteList`, utilizando una nueva función: 
 
     ```
       def getAllImagesAndFavouriteList(request):
@@ -219,9 +225,8 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
         favourite_list = services_nasa_image_gallery.getAllFavouritesByUser(request) #retorna la lista de favoritos
         return images, favourite_list
     ```
-  Dicha función toma la lista de favoritos, para poder mostrar en pantalla aquellas que ya han sido seleccionadas por el usuario logueado, como tal, modificando el botón 'Ya está añadida a favoritos'. 
-
-  Luego, se modificaron las funciones que permiten al usuario agregar un favorito como también eliminarlo: 
+  &nbsp;Dicha función toma la lista de favoritos, para poder mostrar en pantalla aquellas que ya han sido seleccionadas por el usuario logueado, como tal, modificando el botón 'Ya está añadida a favoritos'. <br>
+  &nbsp;Luego, se modificaron las funciones que permiten al usuario agregar un favorito como también eliminarlo: 
 
   ```
     @login_required
@@ -233,11 +238,10 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
     @login_required
       def deleteFavourite(request):
       services_nasa_image_gallery.deleteFavourite(request)
-      return redirect ('home')
+      return redirect ('favoritos')
   ```
 
-  
-  Por último, en esta implementación, se agregó el listado de favoritos con la siguiente función en el archivo `views.py`: 
+  &nbsp;Además, en esta implementación, se agregó el listado de favoritos con la siguiente función en el archivo `views.py`: 
 
   ```
     @login_required
@@ -245,7 +249,7 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
       favourite_list = services_nasa_image_gallery.getAllFavouritesByUser(request)
       return render(request, 'favourites.html', {'favourite_list': favourite_list})
   ```
-  Se completaron las siguientes funciones en `services_nasa_image_gallery.py`:
+  Por último, se completaron las siguientes funciones en `services_nasa_image_gallery.py`:
 
   ```
     def saveFavourite(request):
@@ -269,7 +273,7 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
 
         return mapped_favourites
   ```
-  Hasta acá, el cliente de la web tiene la posibilidad de ingresar con el usuario 'ADMIN', ver la galería de imágenes y realizar la búsqueda que desee, además de tener la posibilidad de agregar como favoritos a aquellos que desee, y poder verlos en una lista con más detalles como la fecha de dicha imagen, para también desde ahí poder eliminarlos de esa lista. 
+  &nbsp;Hasta acá, el cliente de la web tiene la posibilidad de ingresar con el usuario 'ADMIN', ver la galería de imágenes y realizar la búsqueda que desee, además de tener la posibilidad de agregar como favoritos a aquellos que desee, y poder verlos en una lista con más detalles como la fecha de dicha imagen, para también desde ahí poder eliminarlos de esa lista. 
 
 ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/1483714e-cb69-4025-8227-adec3eed6c76)
 
@@ -277,13 +281,13 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
 
 #### **6. Renovar interfaz gráfica**
 
-  - Como última implementacíon, se llevo a cabo el cambio en la interfaz gráfica utilizando Tailwind CSS como medio para lograrlo, para eso se utilizó dicho framework desde un CDN para simplificar la configuración del mismo, agregado al `<head>` del archivo `header.html`
+  Como última implementacíon, se llevó a cabo el cambio en la interfaz gráfica utilizando Tailwind CSS como medio para lograrlo, para eso se utilizó dicho framework desde un CDN para simplificar la configuración del mismo, agregado al `<head>` del archivo `header.html`
 
   ```
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   ```
 
-  Luego, en cada template, se ajustaron los contenidos de los atributos `class` de cada elemento para modificar su posición, tamaño y color, según lo requerido en cada vista. El siguiente es un ejemplo de la modificación aplicada al `<body>` del `header.html`:
+  &nbsp;Luego, en cada template, se ajustaron los contenidos de los atributos `class` de cada elemento para modificar su posición, tamaño y color, según lo requerido en cada vista. El siguiente es un ejemplo de la modificación aplicada al `<body>` del `header.html`:
 
   ```
     <body>
@@ -320,6 +324,35 @@ Para seleccionar las funcionalidades a desarrollar y cumplir con los puntos sele
 
 ![image](https://github.com/Luis-Alves-Da-Silva/TP-IP-Alves-Da-Silva_Ledesma/assets/128189587/464c6080-3b03-4d3a-9070-caa1a984ea14)
 
-### Conclusion 
-  El desarrollo del proyecto "Galeria de Imagenes de la NASA" ha sido una experiencia enriquecedora donde hemos podido plasmar algunos de los conocimientos principales adquiridos durante la cursada de introducción a la programación ademas de familiarizarnos con el uso de Git, Github, Django,JavaScript y algunos conceptos de las metodologías agiles para la de gestión de proyectos. A pesar de algunas dificultadas encontradas a lo largo del proyecto, hemos logrado que las imagenes se carguen correctamente en la galeria, el funcionamiento del buscador, la implementación del loading spinner para mejorar la experiencia del usuario, el correcto funcionamiento del inicio y cierre de sesión, la incorporación de los favoritos y la renovación de la interfaz grafica con el fin de proporcionar al usuario una mejor experiencia, atractiva y moderna.
+### Dificultades y decisiones tomadas
+
+&nbsp;Uno de los primeros desafíos significativos que enfrentamos al comenzar el proyecto fue trabajar con código previamente desarrollado por un tercero. Este código ya estaba estructurado en un entorno que no conocíamos bien: Django. Comprender el flujo del código existente y descubrir qué elementos necesitabamos agregar o modificar para que funcionara correctamente fue una tarea que requirió de mucha atención. <br>
+&nbsp;Una vez completadas las tareas básicas del proyecto, seleccionamos los elementos opcionales que podríamos agregar, considerando que varios de ellos ya estaban parcialmente desarrollados. Cabe destacar que el trabajo en grupo fue fructífero y se caracterizó por una excelente comunicación. Utilizar herramientas como Git y GitHub, nos permitió manejar las versiones de manera ordenada, diviendo cada tarea en una rama distinta de trabajo. <br>
+&nbsp;Teniendo en cuenta estos puntos anteriores, podemos afirmar que hemos adquirido una serie de conocimientos y habilidades valiosas que abarcan tanto aspectos técnicos como de gestión de proyectos. 
+
+### Recursos Utilizados
+
+&nbsp;Para completar el proyecto, recurrimos a una variedad de recursos y documentación. Algunos de los más útiles fueron:
+
+- Documentación Oficial de Django: 
+
+  `https://docs.djangoproject.com/en/5.0/`
+
+- Stack Overflow:
+
+  `https://stackoverflow.com/`
+
+- Tailwind CSS:
+
+  `https://tailwindcss.com/docs/installation/play-cdn`
+  `https://tailwindcomponents.com/cheatsheet/`
+
+- Videos: 
+
+  `https://www.youtube.com/watch?v=PA8lkIjN_34`
+  `https://www.youtube.com/watch?v=oKuZQ238Ncc`
+
+### Conclusión
+
+&nbsp;El desarrollo del proyecto "Galería de Imágenes de la NASA" ha sido una experiencia enriquecedora donde hemos podido plasmar algunos de los conocimientos principales adquiridos durante la cursada de Introducción a la Programación, además de familiarizarnos con el uso de Git, Github, Django, JavaScript y algunos conceptos de las metodologías ágiles para la de gestión de proyectos. <br> &nbsp;A pesar de algunas dificultades encontradas a lo largo del proyecto, hemos logrado que las imágenes se carguen correctamente en la galería, el funcionamiento del buscador, la implementación del loading spinner para mejorar la experiencia del usuario, el correcto funcionamiento del inicio y cierre de sesión, la incorporación de los favoritos y la renovación de la interfaz gráfica con el fin de proporcionar al usuario una mejor experiencia, atractiva y moderna.
   
