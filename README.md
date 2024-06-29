@@ -345,11 +345,13 @@
 - Tailwind CSS:
 
   [Tailwind CSS Docs](https://tailwindcss.com/docs/installation)
+  
   [Tailwind CSS Cheatsheet](https://tailwindcomponents.com/cheatsheet/)
 
 - Videos: 
 
   (https://www.youtube.com/watch?v=PA8lkIjN_34)
+  
   (https://www.youtube.com/watch?v=oKuZQ238Ncc)
 
 ### Conclusión
