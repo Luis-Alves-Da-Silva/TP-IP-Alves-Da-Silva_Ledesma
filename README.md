@@ -336,21 +336,21 @@
 
 - Documentación Oficial de Django: 
 
-  `https://docs.djangoproject.com/en/5.0/`
+  [Django Docs](https://docs.djangoproject.com/en/5.0/)
 
 - Stack Overflow:
 
-  `https://stackoverflow.com/`
+  [Stack Overflow](https://stackoverflow.com/)
 
 - Tailwind CSS:
 
-  `https://tailwindcss.com/docs/installation/play-cdn`
-  `https://tailwindcomponents.com/cheatsheet/`
+  [Tailwind CSS Docs](https://tailwindcss.com/docs/installation)
+  [Tailwind CSS Cheatsheet](https://tailwindcomponents.com/cheatsheet/)
 
 - Videos: 
 
-  `https://www.youtube.com/watch?v=PA8lkIjN_34`
-  `https://www.youtube.com/watch?v=oKuZQ238Ncc`
+  (https://www.youtube.com/watch?v=PA8lkIjN_34)
+  (https://www.youtube.com/watch?v=oKuZQ238Ncc)
 
 ### Conclusión
 
